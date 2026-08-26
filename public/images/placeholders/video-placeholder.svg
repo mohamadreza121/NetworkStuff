@@ -1,0 +1,10 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#070C12"/>
+  <rect x="70" y="60" width="1060" height="555" rx="8" fill="#0A111B" stroke="#1D2A38" stroke-width="2"/>
+  <circle cx="600" cy="315" r="72" fill="#0D1B25" stroke="#20D3EE" stroke-width="2"/>
+  <path d="M582 276L646 315L582 354V276Z" fill="#20D3EE"/>
+  <path d="M110 565H1090" stroke="#1D2A38" stroke-width="8" stroke-linecap="round"/>
+  <path d="M110 565H395" stroke="#20D3EE" stroke-width="8" stroke-linecap="round"/>
+  <text x="600" y="485" fill="#64748B" font-family="monospace" font-size="14" text-anchor="middle" letter-spacing="2">PLACEHOLDER / VIDEO EMBED</text>
+</svg>
+
