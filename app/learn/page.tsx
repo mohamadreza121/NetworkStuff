@@ -125,7 +125,7 @@ export default function LearnPage() {
           <div>
             <span>03 / LAB SYSTEM</span>
             <h2>Practice first.<br />Solution when needed.</h2>
-            <p>The Phase 1 shell already reserves two distinct modes. Phase 2 connects them to structured lab content and downloadable files.</p>
+            <p>Practice mode protects the answer. Solution mode adds completed configurations, expected output, and failure analysis only when you choose to reveal it.</p>
           </div>
           <div className="lab-mode-comparison">
             <article>
@@ -145,4 +145,3 @@ export default function LearnPage() {
     </main>
   );
 }
-

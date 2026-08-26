@@ -14,7 +14,10 @@ const vite = await createServer({
   configFile: false,
   root,
   resolve: { alias: { "@": root } },
-  server: { middlewareMode: true },
+  server: {
+    middlewareMode: true,
+    watch: { ignored: ["**/.sites-runtime/**", "**/dist/**", "**/.next/**"] },
+  },
 });
 
 after(async () => {
@@ -82,4 +85,38 @@ test("renders sidebar skeletons deterministically", async () => {
 
   assert.equal(first, second);
   assert.match(first, /--skeleton-width:70%/);
+});
+
+test("validates the Phase 2 content catalogs", async () => {
+  const { lessons } = await vite.ssrLoadModule("/content/lessons.ts");
+  const { hubs } = await vite.ssrLoadModule("/content/hubs.ts");
+  const { labs } = await vite.ssrLoadModule("/content/labs.ts");
+  const { linuxCommands } = await vite.ssrLoadModule("/content/commands.ts");
+
+  assert.equal(lessons.length, 42);
+  assert.equal(hubs.length, 6);
+  assert.equal(labs.length, 6);
+  assert.equal(linuxCommands.length, 24);
+  assert.equal(new Set(lessons.map((lesson) => lesson.slug.join("/"))).size, lessons.length);
+  assert.ok(lessons.every((lesson) => lesson.status === "READY"));
+});
+
+test("keeps lab practice content independent from protected solutions", async () => {
+  const { labs } = await vite.ssrLoadModule("/content/labs.ts");
+  for (const lab of labs) {
+    assert.ok(lab.tasks.length >= 3);
+    assert.ok(lab.solution.configuration.length > 40);
+    assert.ok(!lab.starter.includes(lab.solution.configuration));
+    assert.ok(lab.downloads.length >= 2);
+  }
+});
+
+test("defines responsive safeguards for the requested QA widths", async () => {
+  const css = await readFile(path.join(root, "app/globals.css"), "utf8");
+  for (const width of [1180, 1024, 768, 430, 390]) {
+    assert.match(css, new RegExp(`@media \\(max-width: ${width}px\\)`));
+  }
+  assert.match(css, /body \{ overflow-x: hidden;/);
+  assert.match(css, /\.address-table \{ overflow-x: auto;/);
+  assert.match(css, /\.command-filters, \.lab-filter-row \{ flex-wrap: nowrap; overflow-x: auto;/);
 });

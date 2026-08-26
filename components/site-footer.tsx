@@ -18,13 +18,13 @@ export function SiteFooter() {
             <h2>Navigate</h2>
             <Link href="/roadmap">Career roadmap</Link>
             <Link href="/learn">Learning hub</Link>
-            <Link href="/learn/cisco/ccna/ospf-fundamentals">Sample lesson</Link>
+            <Link href="/labs">Lab library</Link>
           </div>
           <div>
             <h2>Reference</h2>
-            <Link href="/learn/linux/networking/ip-command">Linux ip command</Link>
-            <Link href="/learn/cisco/ccna/ospf-fundamentals#configuration">Cisco configuration</Link>
-            <Link href="/learn#lab-preview">Lab preview</Link>
+            <Link href="/reference/linux">Linux commands</Link>
+            <Link href="/automation">Automation</Link>
+            <Link href="/firewalls">Firewalls</Link>
           </div>
           <div>
             <h2>Source</h2>

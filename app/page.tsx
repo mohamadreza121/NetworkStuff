@@ -54,6 +54,7 @@ const learningRoutes = [
 const labPreviews = [
   {
     index: "LAB-014",
+    slug: "ospf-multi-area",
     title: "OSPF multi-area enterprise",
     level: "PROFESSIONAL",
     platform: "GNS3",
@@ -63,6 +64,7 @@ const labPreviews = [
   },
   {
     index: "LAB-006",
+    slug: "basic-vlan",
     title: "Campus VLAN fault isolation",
     level: "JUNIOR",
     platform: "PACKET TRACER",
@@ -72,6 +74,7 @@ const labPreviews = [
   },
   {
     index: "LAB-021",
+    slug: "linux-network-troubleshooting",
     title: "Linux reachability triage",
     level: "FOUNDATION",
     platform: "UBUNTU",
@@ -97,7 +100,7 @@ export default function Home() {
               <Link className="np-button np-button-primary" href="/roadmap">
                 Start the roadmap <ArrowRight aria-hidden="true" />
               </Link>
-              <Link className="np-button np-button-secondary" href="/learn#lab-preview">
+              <Link className="np-button np-button-secondary" href="/labs">
                 Explore labs <FlaskConical aria-hidden="true" />
               </Link>
             </div>
@@ -224,10 +227,10 @@ export default function Home() {
                 <div className="lab-meta"><span>{lab.level}</span><span>{lab.platform}</span><span>{lab.time}</span><span>{lab.nodes}</span></div>
                 <div className="lab-skills">{lab.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
                 <div className="lab-actions">
-                  <Link href={index === 2 ? "/learn/linux/networking/ip-command" : "/learn/cisco/ccna/ospf-fundamentals"}>
-                    <Play aria-hidden="true" /> Inspect lesson
+                  <Link href={`/labs/${lab.slug}`}>
+                    <Play aria-hidden="true" /> Start lab
                   </Link>
-                  <button type="button" disabled title="Downloads arrive in Phase 2"><Download aria-hidden="true" /> Phase 2</button>
+                  <a href="/downloads/worksheets/netpath-lab-worksheet.txt" download><Download aria-hidden="true" /> Worksheet</a>
                 </div>
               </article>
             ))}
@@ -249,7 +252,7 @@ export default function Home() {
               <li><CheckCircle2 aria-hidden="true" />Verification sequence</li>
               <li><CheckCircle2 aria-hidden="true" />Related commands</li>
             </ul>
-            <Link href="/learn/linux/networking/ip-command">Open Linux command sample <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/reference/linux">Open Linux command reference <ArrowRight aria-hidden="true" /></Link>
           </div>
           <div className="reference-terminal-stack">
             <div className="terminal-context-row">
@@ -309,7 +312,7 @@ export default function Home() {
             <h2>One source of truth.<br />Many devices.</h2>
             <p>Python, Git, APIs, Ansible, Netmiko, NAPALM, NETCONF, RESTCONF, and YANG—always tied back to a network task.</p>
             <div className="automation-flow"><b>CODE</b><i /><b>INVENTORY</b><i /><b>50 DEVICES</b></div>
-            <Link href="/roadmap#automation">Follow automation path <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/automation">Follow automation path <ArrowRight aria-hidden="true" /></Link>
           </article>
           <article data-tone="red">
             <div className="discipline-icon"><Shield aria-hidden="true" /></div>
@@ -317,7 +320,7 @@ export default function Home() {
             <h2>Trust is a design<br />decision.</h2>
             <p>Palo Alto, FortiGate, NAT, security policy, IPsec, SSL VPN, logging, and high availability through real traffic flows.</p>
             <div className="security-flow"><b>UNTRUST</b><i /><b>POLICY</b><i /><b>TRUST</b></div>
-            <Link href="/roadmap#security">Follow security path <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/firewalls">Follow security path <ArrowRight aria-hidden="true" /></Link>
           </article>
         </div>
       </section>
