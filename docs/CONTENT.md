@@ -20,10 +20,13 @@ objectives, overview, terminology, a command example, verification, troubleshoot
 real-world context, and interview questions. The catch-all learning route is generated
 from the slug array.
 
-## Linux command
+## Command reference
 
-Add to `content/commands.ts`. Keep the purpose concise, show one practical example,
-state what good output means, and suggest the next useful commands.
+Add platform records under `content/reference/`. Keep the purpose concise, identify
+the exact command mode, show one practical example, distinguish current and legacy
+syntax, and mark any state-changing or service-impacting operation. The catalog is
+validated by `referenceCommandSchema` and automatically joins global search. See
+`docs/REFERENCE.md` for the complete authoring and source workflow.
 
 ## Lab
 

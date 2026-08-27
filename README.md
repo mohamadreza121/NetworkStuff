@@ -11,13 +11,15 @@ in an obsidian / graphite / platinum visual system.
 
 - 42 schema-validated lessons across Cisco, Linux, Python, Ansible, automation,
   firewalls, and GNS3
-- six technology hubs, 24 searchable Linux commands, and six practice/solution labs
+- six technology hubs, six practice/solution labs, and a 609-entry command reference
+- 153 Linux, 280 Cisco IOS / IOS-XE, 58 PAN-OS, 57 FortiOS, 34 Git, and 27 Ansible entries
 - 12 GNS3 and Packet Tracer project architectures with reusable case-study pages
 - nine evidence-led troubleshooting incidents with protected diagnoses
 - 12 role- and technology-based interview questions with hints and reasoning
 - a device-local junior Network Engineer readiness checklist
 - an 18-term searchable glossary
-- working IPv4 subnet and wildcard-mask calculators
+- seven working client-side instruments: IPv4 subnetting, VLSM, IPv6, wildcard masks,
+  OSPF cost, classic EIGRP metrics and feasibility, and Cisco IOS ACL construction
 - global keyboard search across hubs, lessons, labs, projects, commands, tools,
   incidents, interview questions, glossary terms, and reference pages
 - canonical metadata, sitemap coverage, OpenGraph imagery, responsive navigation,
@@ -77,9 +79,15 @@ docs/         Authoring, design-system, and deployment guidance
 | `/job-ready` | Device-local readiness checklist |
 | `/tools` | Engineer's toolkit |
 | `/tools/subnet-calculator` | Working IPv4 subnet calculator |
+| `/tools/vlsm-planner` | Largest-first, non-overlapping IPv4 address planner |
+| `/tools/ipv6-helper` | Exact IPv6 expansion, compression, classification, and prefix planning |
 | `/tools/wildcard-calculator` | Working wildcard-mask calculator |
+| `/tools/ospf-cost-calculator` | Multi-interface OSPF cost comparison |
+| `/tools/eigrp-calculator` | Classic metric and feasible-successor analysis |
+| `/tools/acl-builder` | Ordered standard and extended Cisco IOS ACL generator |
 | `/glossary` | Fast, searchable term reference |
-| `/reference/linux` | Searchable Linux command reference |
+| `/reference` | Unified six-platform command reference center |
+| `/reference/[platform]` | Linux, Cisco, PAN-OS, FortiOS, Git, or Ansible reference |
 | `/about` | Concise project mission |
 
 ## Add or replace content
@@ -88,7 +96,7 @@ The platform is intentionally content-driven. Most additions require one validat
 record and optional approved assets, not layout changes.
 
 - lessons: `content/lessons.ts`
-- Linux commands: `content/commands.ts`
+- command references: `content/reference/*.ts`
 - labs: `content/labs.ts`
 - projects: `content/projects.ts`
 - troubleshooting scenarios: `content/troubleshooting.ts`
@@ -96,7 +104,9 @@ record and optional approved assets, not layout changes.
 - glossary terms: `content/glossary.ts`
 - schemas: `content/schema.ts`
 
-See [docs/CONTENT.md](docs/CONTENT.md) for field-level workflows and
+See [docs/CONTENT.md](docs/CONTENT.md) for field-level workflows,
+[docs/REFERENCE.md](docs/REFERENCE.md) for command authoring,
+[docs/TOOLS.md](docs/TOOLS.md) for calculator behavior, and
 [docs/PROJECTS.md](docs/PROJECTS.md) for project/download rules.
 
 ## Downloads, images, and video
