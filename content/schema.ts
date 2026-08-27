@@ -162,10 +162,38 @@ export const glossaryTermSchema = z.object({
   relatedLesson: linkSchema.optional(),
 });
 
+export const referencePlatformSchema = z.enum(["Linux", "Cisco IOS / IOS-XE", "Palo Alto PAN-OS", "FortiGate FortiOS", "Git", "Ansible"]);
+export const referenceStatusSchema = z.enum(["CURRENT", "LEGACY"]);
+export const referenceCommandSchema = z.object({
+  command: z.string().min(1),
+  platform: referencePlatformSchema,
+  category: z.string().min(1),
+  level: skillLevelSchema,
+  mode: z.string().min(1),
+  purpose: z.string().min(12),
+  syntax: z.string().min(1),
+  examples: z.array(z.string().min(1)).min(1),
+  explanation: z.string().min(20),
+  commonOptions: z.array(z.string()),
+  verification: z.array(z.string()),
+  related: z.array(z.string()),
+  operationalNotes: z.array(z.string()).min(1),
+  warnings: z.array(z.string()),
+  aliases: z.array(z.string()),
+  tags: z.array(z.string()).min(2),
+  status: referenceStatusSchema,
+  destructive: z.boolean(),
+  legacy: z.boolean(),
+  toolLinks: z.array(linkSchema),
+  source: z.object({ label: z.string(), href: z.string().url() }),
+});
+
 export type Project = z.infer<typeof projectSchema>;
 export type TroubleshootingScenario = z.infer<typeof troubleshootingScenarioSchema>;
 export type InterviewQuestion = z.infer<typeof interviewQuestionSchema>;
 export type GlossaryTerm = z.infer<typeof glossaryTermSchema>;
+export type ReferenceCommand = z.infer<typeof referenceCommandSchema>;
+export type ReferencePlatform = z.infer<typeof referencePlatformSchema>;
 
 export function defineLessons(input: unknown): Lesson[] {
   return z.array(lessonSchema).parse(input);
@@ -175,3 +203,4 @@ export const defineProjects = (input: unknown): Project[] => z.array(projectSche
 export const defineTroubleshootingScenarios = (input: unknown): TroubleshootingScenario[] => z.array(troubleshootingScenarioSchema).parse(input);
 export const defineInterviewQuestions = (input: unknown): InterviewQuestion[] => z.array(interviewQuestionSchema).parse(input);
 export const defineGlossaryTerms = (input: unknown): GlossaryTerm[] => z.array(glossaryTermSchema).parse(input);
+export const defineReferenceCommands = (input: unknown): ReferenceCommand[] => z.array(referenceCommandSchema).parse(input);

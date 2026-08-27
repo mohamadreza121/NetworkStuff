@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { EigrpCalculator } from "@/components/eigrp-calculator";
+import { ResourceHero } from "@/components/resource-hero";
+
+export const metadata: Metadata = { title: "EIGRP Metric & Feasible Successor Calculator", description: "Calculate the classic EIGRP composite metric and analyze successor and feasible-successor route candidates.", alternates: { canonical: "/tools/eigrp-calculator" } };
+export default function EigrpCalculatorPage() { return <main><ResourceHero eyebrow="TOOLS / DISTANCE-VECTOR ROUTING" title="EIGRP Metric & Feasibility Calculator" description="Expose every classic metric component, then compare reported distance against the successor feasible distance with exact integer arithmetic." metrics={[{ value: "K1–K5", label: "CLASSIC VALUES" }, { value: "RD < FD", label: "FEASIBILITY" }, { value: "DUAL", label: "PATH ANALYSIS" }]} /><section className="tool-page-section"><div className="page-shell"><EigrpCalculator /><div className="tool-explanation"><span>HOW THIS WORKS</span><h2>Metric selection and loop-free backup qualification are separate decisions.</h2><p>The lowest valid total metric becomes the successor. An alternate qualifies as a feasible successor only when its reported distance is strictly lower than the current successor feasible distance.</p><div className="tool-crosslinks"><Link href="/reference/cisco?q=eigrp">Open EIGRP commands</Link><Link href="/interview?q=EIGRP">Practice EIGRP questions</Link><Link href="/learn/cisco/ccnp">Review the CCNP path</Link></div></div></div></section></main>; }

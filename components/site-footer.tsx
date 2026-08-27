@@ -30,10 +30,11 @@ export function SiteFooter() {
           </div>
           <div>
             <h2>Reference</h2>
+            <Link href="/reference">Command center</Link>
+            <Link href="/reference/cisco">Cisco commands</Link>
             <Link href="/reference/linux">Linux commands</Link>
             <Link href="/glossary">Glossary</Link>
             <Link href="/tools">Tools</Link>
-            <Link href="/job-ready">Job ready</Link>
           </div>
           <div>
             <h2>Project</h2>

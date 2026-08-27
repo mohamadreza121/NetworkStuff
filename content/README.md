@@ -1,7 +1,16 @@
 # NetPath content model
 
 NetPath separates authored learning data from route and presentation code. All
-Phase 3 catalogs use the schemas in `content/schema.ts`.
+catalogs use the schemas in `content/schema.ts`.
+
+## Add a command reference
+
+Add a row to the relevant `content/reference/*.ts` platform file. Each record is
+normalized through `makeReferenceSet()` and validated by `referenceCommandSchema`.
+Keep command mode, level, lifecycle status, safety flag, example, official source,
+and operational context accurate for the target release. Add new platforms to
+`content/reference/index.ts`; the unified route and global search then update
+automatically. See `docs/REFERENCE.md` for the row format and safety rules.
 
 ## Add a lesson
 

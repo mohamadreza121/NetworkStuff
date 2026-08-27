@@ -354,5 +354,5 @@ export const primaryNavigation = [
   { label: "Labs", href: "/labs" },
   { label: "Projects", href: "/projects" },
   { label: "Tools", href: "/tools" },
-  { label: "Reference", href: "/reference/linux" },
+  { label: "Reference", href: "/reference" },
 ];
