@@ -150,6 +150,41 @@ test("expands global search across every Phase 3 resource type", async () => {
   assert.ok(ospf.some((record) => record.category === "Troubleshooting"));
 });
 
+test("validates the Phase 4 multi-platform reference catalog", async () => {
+  const { referenceCommands, referencePlatforms } = await vite.ssrLoadModule("/content/reference/index.ts");
+  const expected = { linux: 153, cisco: 280, "palo-alto": 58, fortigate: 57, git: 34, ansible: 27 };
+  const minimums = { linux: 100, cisco: 150, "palo-alto": 30, fortigate: 30, git: 20, ansible: 15 };
+
+  assert.equal(referenceCommands.length, 609);
+  assert.equal(referencePlatforms.length, 6);
+  for (const definition of referencePlatforms) {
+    assert.equal(definition.commands.length, expected[definition.slug]);
+    assert.ok(definition.commands.length >= minimums[definition.slug]);
+    assert.equal(new Set(definition.commands.map((item) => `${item.command}|${item.category}|${item.mode}`)).size, definition.commands.length);
+  }
+  assert.ok(referenceCommands.every((item) => item.examples.length && item.operationalNotes.length));
+  assert.ok(referenceCommands.every((item) => item.source.href.startsWith("https://")));
+  assert.ok(referenceCommands.some((item) => item.legacy));
+  assert.ok(referenceCommands.some((item) => item.destructive));
+  assert.ok(referenceCommands.some((item) => item.toolLinks.length));
+});
+
+test("indexes every Phase 4 tool and representative reference query", async () => {
+  const { searchIndex } = await vite.ssrLoadModule("/lib/search-index.ts");
+  const toolRoutes = [
+    "/tools/subnet-calculator", "/tools/vlsm-planner", "/tools/ipv6-helper",
+    "/tools/wildcard-calculator", "/tools/ospf-cost-calculator",
+    "/tools/eigrp-calculator", "/tools/acl-builder",
+  ];
+  for (const href of toolRoutes) assert.ok(searchIndex.some((record) => record.category === "Tool" && record.href === href), `missing tool search record: ${href}`);
+
+  const matches = (query) => searchIndex.filter((record) => `${record.title} ${record.description} ${record.keywords}`.toLowerCase().includes(query));
+  assert.ok(matches("show ip ospf").some((record) => record.category === "Command" && record.href.startsWith("/reference/cisco")));
+  assert.ok(matches("tcpdump").some((record) => record.category === "Command" && record.href.startsWith("/reference/linux")));
+  assert.ok(matches("vlsm").some((record) => record.href === "/tools/vlsm-planner"));
+  assert.ok(matches("feasible successor").some((record) => record.href === "/tools/eigrp-calculator"));
+});
+
 test("calculates exact IPv4 subnet boundaries and point-to-point capacity", async () => {
   const { calculateSubnet } = await vite.ssrLoadModule("/lib/network-tools.ts");
   const result = calculateSubnet("192.168.10.25", "/27");
@@ -185,6 +220,39 @@ test("ships Phase 3 route, solution-gate, local-progress, and overflow safeguard
   assert.match(readiness, /Reset progress/i);
   assert.match(css, /overflow-x:\s*hidden/);
   assert.match(css, /prefers-reduced-motion:\s*reduce/);
+});
+
+test("ships Phase 4 routes, accessible controls, copy actions, and responsive safeguards", async () => {
+  const routeFiles = [
+    "app/reference/page.tsx", "app/reference/linux/page.tsx", "app/reference/[platform]/page.tsx",
+    "app/tools/page.tsx", "app/tools/subnet-calculator/page.tsx", "app/tools/vlsm-planner/page.tsx",
+    "app/tools/ipv6-helper/page.tsx", "app/tools/wildcard-calculator/page.tsx",
+    "app/tools/ospf-cost-calculator/page.tsx", "app/tools/eigrp-calculator/page.tsx",
+    "app/tools/acl-builder/page.tsx",
+  ];
+  for (const file of routeFiles) assert.ok((await readFile(path.join(root, file), "utf8")).length > 100, `missing Phase 4 route: ${file}`);
+
+  const calculatorFiles = [
+    "components/subnet-calculator.tsx", "components/vlsm-planner.tsx", "components/ipv6-helper.tsx",
+    "components/wildcard-calculator.tsx", "components/ospf-cost-calculator.tsx",
+    "components/eigrp-calculator.tsx", "components/acl-builder.tsx",
+  ];
+  for (const file of calculatorFiles) {
+    const source = await readFile(path.join(root, file), "utf8");
+    assert.match(source, /CopyControl|ToolActions/, `${file} is missing a copy action`);
+    assert.match(source, /ResetControl|ToolActions/, `${file} is missing a reset action`);
+    assert.match(source, /aria-|<label/, `${file} is missing accessible control labeling`);
+  }
+  const reference = await readFile(path.join(root, "components/reference-browser.tsx"), "utf8");
+  assert.match(reference, /aria-live/);
+  assert.match(reference, /<details/);
+  assert.match(reference, /CopyControl/);
+  assert.match(reference, /RESET FILTERS/);
+
+  const css = await readFile(path.join(root, "app/globals.css"), "utf8");
+  for (const width of [1366, 1024, 768, 430, 390]) assert.match(css, new RegExp(`@media \\(max-width: ${width}px\\)`));
+  assert.match(css, /\.reference-code-line pre \{[^}]*overflow-x:\s*auto/s);
+  assert.match(css, /\.reference-command-main > code \{[^}]*overflow-wrap:\s*anywhere/s);
 });
 
 test("keeps Phase 3 related-content and download links resolvable", async () => {
