@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+
+import { OspfCostCalculator } from "@/components/ospf-cost-calculator";
+import { ResourceHero } from "@/components/resource-hero";
+
+export const metadata: Metadata = { title: "OSPF Cost Calculator", description: "Calculate Cisco-style integer OSPF interface costs using default or custom reference bandwidth across multiple interfaces.", alternates: { canonical: "/tools/ospf-cost-calculator" } };
+export default function OspfCostCalculatorPage() { return <main><ResourceHero eyebrow="TOOLS / LINK-STATE ROUTING" title="OSPF Cost Calculator" description="Compare modern interface speeds under one reference bandwidth and generate the IOS configuration that documents the decision." metrics={[{ value: "100M", label: "CISCO DEFAULT" }, { value: "1–65535", label: "COST RANGE" }, { value: "MULTI", label: "INTERFACE TABLE" }]} /><section className="tool-page-section"><div className="page-shell"><OspfCostCalculator /><div className="tool-explanation"><span>HOW THIS WORKS</span><h2>Reference bandwidth defines the measuring scale.</h2><p>Cost is the reference bandwidth divided by interface bandwidth, represented as a whole-number OSPF cost with a minimum of one. A consistent reference across the domain prevents identical costs from hiding meaningful speed differences.</p><div className="tool-crosslinks"><Link href="/reference/cisco?q=show%20ip%20ospf">Open OSPF commands</Link><Link href="/learn/cisco/ccna/ospf-fundamentals">Learn OSPF fundamentals</Link><Link href="/labs/ospf-multi-area">Practice the OSPF lab</Link></div></div></div></section></main>; }
