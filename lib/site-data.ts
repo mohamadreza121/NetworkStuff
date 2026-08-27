@@ -352,7 +352,7 @@ export const primaryNavigation = [
   { label: "Roadmap", href: "/roadmap" },
   { label: "Learn", href: "/learn" },
   { label: "Labs", href: "/labs" },
+  { label: "Projects", href: "/projects" },
+  { label: "Tools", href: "/tools" },
   { label: "Reference", href: "/reference/linux" },
-  { label: "Automation", href: "/automation" },
-  { label: "Firewalls", href: "/firewalls" },
 ];

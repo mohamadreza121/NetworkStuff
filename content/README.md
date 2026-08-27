@@ -1,6 +1,7 @@
 # NetPath content model
 
-Phase 2 separates authored learning data from route and presentation code.
+NetPath separates authored learning data from route and presentation code. All
+Phase 3 catalogs use the schemas in `content/schema.ts`.
 
 ## Add a lesson
 
@@ -22,6 +23,28 @@ featured lesson values use lesson slugs without the `/learn/` prefix.
 Add a complete record to `content/labs.ts`, including topology, addressing,
 requirements, tasks, starter state, protected solution, failure analysis, and
 download links. `/labs/[slug]` is generated automatically.
+
+## Add a project
+
+Add a record to `content/projects.ts` with platform, level, build time, topology,
+technologies, engineering sections, safe downloads, and related content. The
+`/projects/[platform]/[slug]` route is generated automatically.
+
+## Add a troubleshooting scenario
+
+Add a record seed to `content/troubleshooting.ts`. Keep symptoms, known information,
+hypotheses, commands, and evidence separate from diagnosis, fix, verification, and
+root cause so the solution gate remains meaningful.
+
+## Add an interview question
+
+Add a record to `content/interviews.ts` with a role, category, technology, hint,
+answer, and explanation of the reasoning. Related lesson/lab links are optional.
+
+## Add a glossary term
+
+Add an entry to `content/glossary.ts` with the expanded name, concise definition,
+operational relevance, and related terms. Add a related lesson when one exists.
 
 ## Replace placeholders
 

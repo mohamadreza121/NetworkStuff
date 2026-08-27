@@ -48,4 +48,11 @@ next-env.d.ts
 *.qcow2
 *.vmdk
 *.ova
+*.ovf
+*.vdi
+*.vhd
+*.vhdx
+*.raw
+*.img
+*.bin
 *.gns3project

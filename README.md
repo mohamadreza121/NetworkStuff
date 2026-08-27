@@ -2,82 +2,119 @@
 
 **The practical path to network engineering.**
 
-NetPath is a dark, content-first learning and reference platform for network
-engineers. Phase 2 turns the Phase 1 shell into a structured multi-route system
-with technology hubs, validated lesson data, searchable commands, guided lab
-practice, protected solutions, installation guides, and legal downloads.
+NetPath is a production-oriented learning, lab, troubleshooting, project, reference,
+and career platform for network engineers. Its interface combines technical
+documentation, terminal workflows, network topology, and portfolio-ready case studies
+in an obsidian / graphite / platinum visual system.
 
-## Phase 2 includes
+## Current features
 
-- 42 schema-validated representative lessons across Linux, Cisco, Python,
-  Ansible, automation, Palo Alto, FortiGate, and GNS3
-- Linux, Cisco, CCNA, CCNP, Python, and Ansible technology hubs
-- a searchable 24-command Linux field reference
-- six complete labs with separate practice and revealed-solution modes
-- addressing tables, topology panels, hints, expected output, and failure analysis
-- Windows, Linux, and macOS GNS3 installation guides
-- Packet Tracer, automation, and firewall entry routes
-- global search across navigation, technologies, lessons, labs, commands,
-  references, and troubleshooting
-- copyable terminals, reusable callouts, video placeholders, and downloads
+- 42 schema-validated lessons across Cisco, Linux, Python, Ansible, automation,
+  firewalls, and GNS3
+- six technology hubs, 24 searchable Linux commands, and six practice/solution labs
+- 12 GNS3 and Packet Tracer project architectures with reusable case-study pages
+- nine evidence-led troubleshooting incidents with protected diagnoses
+- 12 role- and technology-based interview questions with hints and reasoning
+- a device-local junior Network Engineer readiness checklist
+- an 18-term searchable glossary
+- working IPv4 subnet and wildcard-mask calculators
+- global keyboard search across hubs, lessons, labs, projects, commands, tools,
+  incidents, interview questions, glossary terms, and reference pages
+- canonical metadata, sitemap coverage, OpenGraph imagery, responsive navigation,
+  reduced-motion support, and accessible interaction states
 
-## Run locally
+## Technology stack
 
-Requires Node.js 22.13 or newer and npm.
+- Next.js 16 / React 19
+- Vinext + Vite for Cloudflare Workers output
+- TypeScript and Zod content validation
+- Tailwind CSS 4 plus vendored Shadcn primitives
+- Node's built-in test runner
+- ChatGPT Sites deployment manifest
+
+## Install and run
+
+Node.js 22.13 or newer and npm are required.
 
 ```bash
 npm ci
 npm run dev
 ```
 
-## Quality gates
+The standard quality gates are:
 
 ```bash
 npm run lint
 npx tsc --noEmit
+npm run test
 npm run build
-node --test --test-concurrency=1 tests/*.test.mjs
 ```
 
-## Key routes
+## Repository structure
+
+```text
+app/          Routes, metadata, sitemap, and error states
+components/   Shared presentation and interactive systems
+content/      Validated lessons, labs, projects, incidents, interviews, glossary
+lib/          Search, site configuration, selectors, and calculator logic
+public/       Approved images and redistributable downloads
+tests/        Content, logic, routing, and rendered-output validation
+docs/         Authoring, design-system, and deployment guidance
+```
+
+## Major routes
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Product homepage |
-| `/roadmap` | Career progression roadmap |
-| `/learn` | Learning-system index |
-| `/learn/linux` | Linux technology hub |
-| `/learn/cisco/ccna` | CCNA curriculum hub |
-| `/learn/cisco/ccnp` | CCNP curriculum hub |
-| `/learn/python` | Python automation hub |
-| `/learn/ansible` | Ansible hub |
-| `/reference/linux` | Searchable Linux command library |
-| `/labs` | Filterable lab library |
-| `/labs/ospf-multi-area` | Representative practice/solution lab |
-| `/automation` | Automation learning route |
-| `/firewalls` | Palo Alto and FortiGate routes |
-| `/gns3` | GNS3 platform hub |
-| `/gns3/install/windows` | Representative 14-step install guide |
-| `/packet-tracer` | Packet Tracer project route |
+| `/roadmap` | Six-stage Network Engineer progression |
+| `/learn` | Technology and curriculum index |
+| `/labs` | Practice/solution lab library |
+| `/projects` | Project showcase and portfolio system |
+| `/projects/gns3` | GNS3 engineering case studies |
+| `/projects/packet-tracer` | Packet Tracer project architecture |
+| `/troubleshooting` | Incident and diagnostic center |
+| `/interview` | Interview questions, hints, and reasoning |
+| `/job-ready` | Device-local readiness checklist |
+| `/tools` | Engineer's toolkit |
+| `/tools/subnet-calculator` | Working IPv4 subnet calculator |
+| `/tools/wildcard-calculator` | Working wildcard-mask calculator |
+| `/glossary` | Fast, searchable term reference |
+| `/reference/linux` | Searchable Linux command reference |
+| `/about` | Concise project mission |
 
-## Content architecture
+## Add or replace content
 
-The content layer lives in `content/`:
+The platform is intentionally content-driven. Most additions require one validated
+record and optional approved assets, not layout changes.
 
-- `schema.ts` validates every lesson and optional content block with Zod.
-- `lessons.ts` stores lesson seeds and produces consistent lesson records.
-- `hubs.ts` defines technology-hub curricula and featured lessons.
-- `commands.ts` defines Linux reference records.
-- `labs.ts` defines practice and solution data independently.
+- lessons: `content/lessons.ts`
+- Linux commands: `content/commands.ts`
+- labs: `content/labs.ts`
+- projects: `content/projects.ts`
+- troubleshooting scenarios: `content/troubleshooting.ts`
+- interview questions: `content/interviews.ts`
+- glossary terms: `content/glossary.ts`
+- schemas: `content/schema.ts`
 
-See [`content/README.md`](content/README.md) for authoring instructions.
+See [docs/CONTENT.md](docs/CONTENT.md) for field-level workflows and
+[docs/PROJECTS.md](docs/PROJECTS.md) for project/download rules.
 
-## Downloads and media
+## Downloads, images, and video
 
-Small redistributable assets live under `public/downloads/`. Replace screenshot
-and video placeholders with approved assets or hosted media. Never commit
-credentials, private configurations, licensed course content, appliance images,
-VM disks, ISO files, proprietary Packet Tracer files, or large videos.
+- Put small, redistributable files in `public/downloads/` and reference them with
+  root-relative URLs.
+- Put approved optimized images in `public/images/`; provide explicit dimensions and
+  avoid full-resolution topology exports when a smaller derivative is sufficient.
+- Link or embed videos from an approved host instead of committing large binaries.
+- Update `app/sitemap.ts` when adding a new static route outside a generated catalog.
+- Set `NEXT_PUBLIC_SITE_URL` when the canonical origin differs from the deployment URL.
 
-Set `NEXT_PUBLIC_SITE_URL` in a local environment file when the canonical URL
-differs from the provided deployment URL.
+Never commit credentials, private configurations, licensed training material, Cisco
+IOS/IOSv/IOS-XE images, FortiGate or Palo Alto VM images, qcow2 disks, GNS3 VM disks,
+ISO files, or other proprietary/large binaries.
+
+## Deployment
+
+The production build emits a Cloudflare Worker-compatible bundle through the existing
+Sites workflow. Preserve `.openai/hosting.json`, `vite.config.ts`, the lockfile, and the
+build scripts. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).

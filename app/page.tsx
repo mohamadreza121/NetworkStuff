@@ -12,7 +12,9 @@ import {
   Play,
   Route,
   Shield,
+  ShieldAlert,
   Terminal,
+  Wrench,
   Workflow,
 } from "lucide-react";
 
@@ -121,8 +123,9 @@ export default function Home() {
         <div className="page-shell">
           <span><i className="status-dot" /> SYSTEM STATUS <b>ALL ROUTES AVAILABLE</b></span>
           <span>PATHS <b>06</b></span>
-          <span>TECHNOLOGIES <b>13</b></span>
-          <span>CONTENT MODEL <b>READY</b></span>
+          <span>PROJECTS <b>12</b></span>
+          <span>INCIDENTS <b>09</b></span>
+          <span>TOOLS <b>02 LIVE</b></span>
           <span className="status-clock">LAST CHECK <b>NOW</b></span>
         </div>
       </div>
@@ -298,9 +301,28 @@ export default function Home() {
                 <span><b>18</b> devices</span><span><b>04</b> VLANs</span><span><b>02</b> sites</span><span><b>09</b> technologies</span>
               </div>
               <div className="project-tags"><span>OSPF</span><span>BGP</span><span>IPsec</span><span>IPv6</span><span>NAT</span><span>DNS</span></div>
-              <p className="phase-note"><CircleGauge aria-hidden="true" /> Project templates and downloads arrive in Phase 3.</p>
+              <Link className="project-inline-action" href="/projects/gns3/enterprise-dual-site"><CircleGauge aria-hidden="true" /> View engineering case study <ArrowRight aria-hidden="true" /></Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="home-operations-section">
+        <div className="page-shell home-operations-grid">
+          <article className="home-incident-preview">
+            <div><span>07 / INCIDENT RESPONSE</span><ShieldAlert aria-hidden="true" /></div>
+            <h2>NETWORK DOWN?</h2>
+            <p>Learn to move from symptom to evidence, diagnosis, fix, verification, and root cause.</p>
+            <div className="home-diagnostic-line" aria-label="Diagnostic sequence"><span>LINK</span><i /><span>VLAN</span><i /><span>IP</span><i /><span>ROUTE</span><i /><span>NAT</span><i /><span>DNS</span></div>
+            <Link href="/troubleshooting">Open troubleshooting center <ArrowRight aria-hidden="true" /></Link>
+          </article>
+          <article className="home-tool-preview">
+            <div><span>08 / ENGINEER&apos;S TOOLKIT</span><Wrench aria-hidden="true" /></div>
+            <h2>Fast answers. Exact boundaries.</h2>
+            <Link href="/tools/subnet-calculator"><b>01</b><span>Subnet Calculator<small>Network · broadcast · hosts</small></span><ArrowRight aria-hidden="true" /></Link>
+            <Link href="/tools/wildcard-calculator"><b>02</b><span>Wildcard Calculator<small>ACL · OSPF · CIDR</small></span><ArrowRight aria-hidden="true" /></Link>
+            <Link href="/reference/linux"><b>03</b><span>Linux Commands<small>Search · copy · verify</small></span><ArrowRight aria-hidden="true" /></Link>
+          </article>
         </div>
       </section>
 
