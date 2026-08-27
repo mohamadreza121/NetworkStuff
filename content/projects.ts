@@ -30,7 +30,7 @@ const common = {
     solution: "/downloads/labs/solution-manifest.txt",
   },
   relatedLessons: [
-    { label: "OSPF Fundamentals", href: "/learn/cisco/ccna/ospf-fundamentals", meta: "CISCO · CCNA" },
+    { label: "OSPF Neighbors and Router IDs", href: "/learn/cisco/ccna/routing/ospf-neighbors-and-router-id", meta: "CISCO · CCNA v1.1" },
     { label: "The Linux ip command", href: "/learn/linux/networking/ip-command", meta: "LINUX · FOUNDATION" },
   ],
   relatedLabs: [

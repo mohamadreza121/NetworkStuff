@@ -41,7 +41,13 @@ test("serves the Phase 4 critical-route sweep without internal 404s", async () =
   const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
   const ctx = { waitUntil() {}, passThroughOnException() {} };
   const routes = [
-    "/", "/roadmap", "/learn", "/learn/cisco/ccna", "/learn/cisco/ccna/ospf-fundamentals",
+    "/", "/roadmap", "/learn", "/learn/cisco/ccna", "/learn/cisco/ccna/network-foundations",
+    "/learn/cisco/ccna/network-foundations/network-components",
+    "/learn/cisco/ccna/ethernet-switching/mac-learning-and-flooding",
+    "/learn/cisco/ccna/ip-addressing/ipv6-address-types",
+    "/learn/cisco/ccna/routing/ospf-neighbors-and-router-id",
+    "/learn/cisco/ccna/security/layer2-security",
+    "/learn/cisco/ccna/automation/rest-apis-and-json",
     "/learn/linux/networking/ip-command", "/labs", "/labs/ospf-multi-area", "/reference",
     "/reference/linux", "/reference/cisco", "/reference/palo-alto", "/reference/fortigate",
     "/reference/git", "/reference/ansible",

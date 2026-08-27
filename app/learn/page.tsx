@@ -105,7 +105,7 @@ export default function LearnPage() {
           </div>
           <div className="sample-lessons">
             <div className="sample-lessons-header"><span><i className="status-dot" />LIVE TEMPLATES</span><b>2 SAMPLES</b></div>
-            <Link href="/learn/cisco/ccna/ospf-fundamentals" data-tone="blue">
+            <Link href="/learn/cisco/ccna/routing/ospf-neighbors-and-router-id" data-tone="blue">
               <span className="sample-icon"><Network aria-hidden="true" /></span>
               <span><small>CISCO / CCNA</small><strong>OSPF Fundamentals</strong><em>45 min · Junior</em></span>
               <ArrowRight aria-hidden="true" />
