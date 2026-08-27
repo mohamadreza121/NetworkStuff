@@ -1,0 +1,20 @@
+NETPATH LAB STARTER MANIFEST
+============================
+
+This repository intentionally does not redistribute proprietary network images,
+virtual appliances, ISO files, or vendor-owned project binaries.
+
+Use the lab page's topology, addressing table, requirements, tasks, and starter
+configuration to build the exercise in your own licensed Packet Tracer, GNS3,
+Linux, or automation environment.
+
+Recommended project layout:
+
+  lab-name/
+  ├── README.md
+  ├── addressing.csv
+  ├── configs/
+  ├── captures/
+  └── evidence/
+
+Record product versions and checksums for any appliance files you supply.

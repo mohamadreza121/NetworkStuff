@@ -1,0 +1,10 @@
+NETPATH LAB SOLUTION MANIFEST
+=============================
+
+1. Compare your configuration with the revealed solution on the lab page.
+2. Re-run the complete verification sequence.
+3. Explain why each expected signal proves the intended behavior.
+4. Reproduce at least one documented failure and repair it from evidence.
+5. Export only configuration, notes, and captures you are permitted to share.
+
+The solution is a review aid, not a substitute for the practice attempt.

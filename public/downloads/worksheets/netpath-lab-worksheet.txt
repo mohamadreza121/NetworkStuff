@@ -1,0 +1,38 @@
+NETPATH LAB WORKSHEET
+=====================
+
+Lab:
+Engineer:
+Date:
+
+1. INTENDED OUTCOME
+What must be true when the lab is complete?
+
+2. BASELINE
+Interfaces:
+Addresses:
+Neighbors:
+Routes / policy:
+Services:
+
+3. ADDRESSING AND TOPOLOGY
+Device | Interface | Address | Gateway | Role
+
+4. IMPLEMENTATION NOTES
+Record each deliberate change and its reason.
+
+5. VERIFICATION
+Test | Expected signal | Observed signal | Pass/Fail
+
+6. TROUBLESHOOTING EVIDENCE
+Symptom:
+Failure domain:
+Evidence:
+Repair:
+Retest:
+
+7. ROLLBACK CONDITION
+What evidence would trigger rollback, and how will it be performed?
+
+8. LESSONS LEARNED
+What would you inspect first next time?

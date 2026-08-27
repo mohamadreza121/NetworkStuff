@@ -197,7 +197,7 @@ export const technologies: Technology[] = [
     modules: 20,
     status: "CORE",
     tone: "blue",
-    href: "/learn/cisco/ccna/ospf-fundamentals",
+    href: "/learn/cisco/ccna",
   },
   {
     name: "Linux",
@@ -207,7 +207,7 @@ export const technologies: Technology[] = [
     modules: 16,
     status: "CORE",
     tone: "green",
-    href: "/learn/linux/networking/ip-command",
+    href: "/learn/linux",
   },
   {
     name: "Cisco CCNP",
@@ -217,7 +217,7 @@ export const technologies: Technology[] = [
     modules: 18,
     status: "NEXT",
     tone: "cyan",
-    href: "/roadmap#professional",
+    href: "/learn/cisco/ccnp",
   },
   {
     name: "Python",
@@ -227,7 +227,7 @@ export const technologies: Technology[] = [
     modules: 16,
     status: "NEXT",
     tone: "amber",
-    href: "/roadmap#automation",
+    href: "/learn/python",
   },
   {
     name: "Ansible",
@@ -237,7 +237,7 @@ export const technologies: Technology[] = [
     modules: 14,
     status: "SPECIALIZE",
     tone: "red",
-    href: "/roadmap#automation",
+    href: "/learn/ansible",
   },
   {
     name: "GNS3",
@@ -247,7 +247,7 @@ export const technologies: Technology[] = [
     modules: 12,
     status: "CORE",
     tone: "cyan",
-    href: "/learn#lab-preview",
+    href: "/gns3",
   },
   {
     name: "Palo Alto",
@@ -257,7 +257,7 @@ export const technologies: Technology[] = [
     modules: 15,
     status: "SPECIALIZE",
     tone: "amber",
-    href: "/roadmap#security",
+    href: "/firewalls/palo-alto",
   },
   {
     name: "FortiGate",
@@ -267,7 +267,7 @@ export const technologies: Technology[] = [
     modules: 15,
     status: "SPECIALIZE",
     tone: "red",
-    href: "/roadmap#security",
+    href: "/firewalls/fortigate",
   },
   {
     name: "Git",
@@ -351,6 +351,8 @@ export const searchItems: SearchItem[] = [
 export const primaryNavigation = [
   { label: "Roadmap", href: "/roadmap" },
   { label: "Learn", href: "/learn" },
-  { label: "OSPF lesson", href: "/learn/cisco/ccna/ospf-fundamentals" },
+  { label: "Labs", href: "/labs" },
+  { label: "Projects", href: "/projects" },
+  { label: "Tools", href: "/tools" },
+  { label: "Reference", href: "/reference/linux" },
 ];
-

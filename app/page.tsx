@@ -12,7 +12,9 @@ import {
   Play,
   Route,
   Shield,
+  ShieldAlert,
   Terminal,
+  Wrench,
   Workflow,
 } from "lucide-react";
 
@@ -54,6 +56,7 @@ const learningRoutes = [
 const labPreviews = [
   {
     index: "LAB-014",
+    slug: "ospf-multi-area",
     title: "OSPF multi-area enterprise",
     level: "PROFESSIONAL",
     platform: "GNS3",
@@ -63,6 +66,7 @@ const labPreviews = [
   },
   {
     index: "LAB-006",
+    slug: "basic-vlan",
     title: "Campus VLAN fault isolation",
     level: "JUNIOR",
     platform: "PACKET TRACER",
@@ -72,6 +76,7 @@ const labPreviews = [
   },
   {
     index: "LAB-021",
+    slug: "linux-network-troubleshooting",
     title: "Linux reachability triage",
     level: "FOUNDATION",
     platform: "UBUNTU",
@@ -97,7 +102,7 @@ export default function Home() {
               <Link className="np-button np-button-primary" href="/roadmap">
                 Start the roadmap <ArrowRight aria-hidden="true" />
               </Link>
-              <Link className="np-button np-button-secondary" href="/learn#lab-preview">
+              <Link className="np-button np-button-secondary" href="/labs">
                 Explore labs <FlaskConical aria-hidden="true" />
               </Link>
             </div>
@@ -118,8 +123,9 @@ export default function Home() {
         <div className="page-shell">
           <span><i className="status-dot" /> SYSTEM STATUS <b>ALL ROUTES AVAILABLE</b></span>
           <span>PATHS <b>06</b></span>
-          <span>TECHNOLOGIES <b>13</b></span>
-          <span>CONTENT MODEL <b>READY</b></span>
+          <span>PROJECTS <b>12</b></span>
+          <span>INCIDENTS <b>09</b></span>
+          <span>TOOLS <b>02 LIVE</b></span>
           <span className="status-clock">LAST CHECK <b>NOW</b></span>
         </div>
       </div>
@@ -224,10 +230,10 @@ export default function Home() {
                 <div className="lab-meta"><span>{lab.level}</span><span>{lab.platform}</span><span>{lab.time}</span><span>{lab.nodes}</span></div>
                 <div className="lab-skills">{lab.skills.map((skill) => <span key={skill}>{skill}</span>)}</div>
                 <div className="lab-actions">
-                  <Link href={index === 2 ? "/learn/linux/networking/ip-command" : "/learn/cisco/ccna/ospf-fundamentals"}>
-                    <Play aria-hidden="true" /> Inspect lesson
+                  <Link href={`/labs/${lab.slug}`}>
+                    <Play aria-hidden="true" /> Start lab
                   </Link>
-                  <button type="button" disabled title="Downloads arrive in Phase 2"><Download aria-hidden="true" /> Phase 2</button>
+                  <a href="/downloads/worksheets/netpath-lab-worksheet.txt" download><Download aria-hidden="true" /> Worksheet</a>
                 </div>
               </article>
             ))}
@@ -249,7 +255,7 @@ export default function Home() {
               <li><CheckCircle2 aria-hidden="true" />Verification sequence</li>
               <li><CheckCircle2 aria-hidden="true" />Related commands</li>
             </ul>
-            <Link href="/learn/linux/networking/ip-command">Open Linux command sample <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/reference/linux">Open Linux command reference <ArrowRight aria-hidden="true" /></Link>
           </div>
           <div className="reference-terminal-stack">
             <div className="terminal-context-row">
@@ -295,9 +301,28 @@ export default function Home() {
                 <span><b>18</b> devices</span><span><b>04</b> VLANs</span><span><b>02</b> sites</span><span><b>09</b> technologies</span>
               </div>
               <div className="project-tags"><span>OSPF</span><span>BGP</span><span>IPsec</span><span>IPv6</span><span>NAT</span><span>DNS</span></div>
-              <p className="phase-note"><CircleGauge aria-hidden="true" /> Project templates and downloads arrive in Phase 3.</p>
+              <Link className="project-inline-action" href="/projects/gns3/enterprise-dual-site"><CircleGauge aria-hidden="true" /> View engineering case study <ArrowRight aria-hidden="true" /></Link>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="home-operations-section">
+        <div className="page-shell home-operations-grid">
+          <article className="home-incident-preview">
+            <div><span>07 / INCIDENT RESPONSE</span><ShieldAlert aria-hidden="true" /></div>
+            <h2>NETWORK DOWN?</h2>
+            <p>Learn to move from symptom to evidence, diagnosis, fix, verification, and root cause.</p>
+            <div className="home-diagnostic-line" aria-label="Diagnostic sequence"><span>LINK</span><i /><span>VLAN</span><i /><span>IP</span><i /><span>ROUTE</span><i /><span>NAT</span><i /><span>DNS</span></div>
+            <Link href="/troubleshooting">Open troubleshooting center <ArrowRight aria-hidden="true" /></Link>
+          </article>
+          <article className="home-tool-preview">
+            <div><span>08 / ENGINEER&apos;S TOOLKIT</span><Wrench aria-hidden="true" /></div>
+            <h2>Fast answers. Exact boundaries.</h2>
+            <Link href="/tools/subnet-calculator"><b>01</b><span>Subnet Calculator<small>Network · broadcast · hosts</small></span><ArrowRight aria-hidden="true" /></Link>
+            <Link href="/tools/wildcard-calculator"><b>02</b><span>Wildcard Calculator<small>ACL · OSPF · CIDR</small></span><ArrowRight aria-hidden="true" /></Link>
+            <Link href="/reference/linux"><b>03</b><span>Linux Commands<small>Search · copy · verify</small></span><ArrowRight aria-hidden="true" /></Link>
+          </article>
         </div>
       </section>
 
@@ -309,7 +334,7 @@ export default function Home() {
             <h2>One source of truth.<br />Many devices.</h2>
             <p>Python, Git, APIs, Ansible, Netmiko, NAPALM, NETCONF, RESTCONF, and YANG—always tied back to a network task.</p>
             <div className="automation-flow"><b>CODE</b><i /><b>INVENTORY</b><i /><b>50 DEVICES</b></div>
-            <Link href="/roadmap#automation">Follow automation path <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/automation">Follow automation path <ArrowRight aria-hidden="true" /></Link>
           </article>
           <article data-tone="red">
             <div className="discipline-icon"><Shield aria-hidden="true" /></div>
@@ -317,7 +342,7 @@ export default function Home() {
             <h2>Trust is a design<br />decision.</h2>
             <p>Palo Alto, FortiGate, NAT, security policy, IPsec, SSL VPN, logging, and high availability through real traffic flows.</p>
             <div className="security-flow"><b>UNTRUST</b><i /><b>POLICY</b><i /><b>TRUST</b></div>
-            <Link href="/roadmap#security">Follow security path <ArrowRight aria-hidden="true" /></Link>
+            <Link href="/firewalls">Follow security path <ArrowRight aria-hidden="true" /></Link>
           </article>
         </div>
       </section>

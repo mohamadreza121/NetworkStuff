@@ -12,7 +12,7 @@ export function TerminalBlock({
   title: string;
   prompt: string;
   code: string;
-  variant?: "cisco" | "linux" | "automation";
+  variant?: "cisco" | "linux" | "automation" | "firewall";
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -45,4 +45,3 @@ export function TerminalBlock({
     </div>
   );
 }
-

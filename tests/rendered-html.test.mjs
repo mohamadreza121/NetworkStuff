@@ -4,7 +4,7 @@ import test from "node:test";
 const developmentPreviewMeta =
   /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
 
-test("renders development preview metadata", async () => {
+test("renders production metadata without the development marker", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -29,5 +29,29 @@ test("renders development preview metadata", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), developmentPreviewMeta);
+  const html = await response.text();
+  assert.doesNotMatch(html, developmentPreviewMeta);
+  assert.match(html, /<title>NetPath — The practical path to network engineering<\/title>/);
+});
+
+test("serves the Phase 3 critical-route sweep without internal 404s", async () => {
+  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
+  workerUrl.searchParams.set("routes", `${process.pid}-${Date.now()}`);
+  const { default: worker } = await import(workerUrl.href);
+  const env = { ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) } };
+  const ctx = { waitUntil() {}, passThroughOnException() {} };
+  const routes = [
+    "/", "/roadmap", "/learn", "/learn/cisco/ccna", "/learn/cisco/ccna/ospf-fundamentals",
+    "/learn/linux/networking/ip-command", "/labs", "/labs/ospf-multi-area", "/reference/linux",
+    "/projects", "/projects/gns3", "/projects/packet-tracer",
+    "/projects/gns3/enterprise-dual-site", "/projects/packet-tracer/campus-vlan-network",
+    "/troubleshooting", "/troubleshooting/ospf-exstart", "/interview", "/job-ready",
+    "/tools", "/tools/subnet-calculator", "/tools/wildcard-calculator", "/glossary",
+    "/automation", "/firewalls", "/firewalls/palo-alto", "/gns3", "/packet-tracer", "/about",
+  ];
+  for (const route of routes) {
+    const response = await worker.fetch(new Request(`http://localhost${route}`, { headers: { accept: "text/html" } }), env, ctx);
+    assert.equal(response.status, 200, `${route} returned ${response.status}`);
+    await response.arrayBuffer();
+  }
 });

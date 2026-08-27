@@ -79,7 +79,7 @@ export function SiteHeader() {
               </nav>
               <div className="mobile-nav-footer">
                 <span className="status-dot" />
-                Phase 1 systems operational
+                Initial production systems operational
               </div>
             </SheetContent>
           </Sheet>

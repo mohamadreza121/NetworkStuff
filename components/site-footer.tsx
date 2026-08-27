@@ -15,19 +15,30 @@ export function SiteFooter() {
 
         <div className="footer-links">
           <div>
-            <h2>Navigate</h2>
-            <Link href="/roadmap">Career roadmap</Link>
-            <Link href="/learn">Learning hub</Link>
-            <Link href="/learn/cisco/ccna/ospf-fundamentals">Sample lesson</Link>
+            <h2>Learn</h2>
+            <Link href="/learn/linux">Linux</Link>
+            <Link href="/learn/cisco/ccna">Cisco</Link>
+            <Link href="/learn/python">Python</Link>
+            <Link href="/learn/ansible">Ansible</Link>
+          </div>
+          <div>
+            <h2>Practice</h2>
+            <Link href="/labs">Labs</Link>
+            <Link href="/projects">Projects</Link>
+            <Link href="/troubleshooting">Troubleshooting</Link>
+            <Link href="/interview">Interview</Link>
           </div>
           <div>
             <h2>Reference</h2>
-            <Link href="/learn/linux/networking/ip-command">Linux ip command</Link>
-            <Link href="/learn/cisco/ccna/ospf-fundamentals#configuration">Cisco configuration</Link>
-            <Link href="/learn#lab-preview">Lab preview</Link>
+            <Link href="/reference/linux">Linux commands</Link>
+            <Link href="/glossary">Glossary</Link>
+            <Link href="/tools">Tools</Link>
+            <Link href="/job-ready">Job ready</Link>
           </div>
           <div>
-            <h2>Source</h2>
+            <h2>Project</h2>
+            <Link href="/about">About</Link>
+            <Link href="/roadmap">Roadmap</Link>
             <a href="https://github.com/mohamadreza121/NetworkStuff" target="_blank" rel="noreferrer">
               <GitBranch aria-hidden="true" /> GitHub <ArrowUpRight aria-hidden="true" />
             </a>

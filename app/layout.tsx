@@ -32,7 +32,10 @@ export const metadata: Metadata = {
     description: "From first ping to production networks.",
     type: "website",
     siteName: "NetPath",
+    url: "/",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "NetPath — The practical path to network engineering" }],
   },
+  twitter: { card: "summary_large_image", title: "NetPath — The practical path to network engineering", description: "From first ping to production networks.", images: ["/og.png"] },
   robots: { index: true, follow: true },
   icons: {
     icon: "/favicon.svg",
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#060A0F",
+  themeColor: "#040506",
   colorScheme: "dark",
 };
 
@@ -49,6 +52,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "WebSite", name: "NetPath", url: siteUrl, description: "A practical network engineering learning and reference platform.", potentialAction: { "@type": "SearchAction", target: `${siteUrl}/?q={search_term_string}`, "query-input": "required name=search_term_string" } }) }} />
         <a className="skip-link" href="#main-content">Skip to content</a>
         <SiteHeader />
         <div id="main-content">{children}</div>
