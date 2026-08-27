@@ -1,4 +1,5 @@
 import { defineLessons, lessonSchema, type Lesson, type TerminalVariant } from "@/content/schema";
+import { ccnaLessonsAsGeneric } from "@/content/cisco/ccna";
 
 type Seed = {
   slug: string;
@@ -22,13 +23,6 @@ const seeds: Seed[] = [
   { slug: "linux/networking/tcpdump-basics", title: "tcpdump Basics", technology: "Linux", command: "sudo tcpdump -ni any icmp\nsudo tcpdump -ni ens33 port 53\nsudo tcpdump -ni ens33 -w triage.pcap", verify: "tcpdump -nnr triage.pcap | head" },
   { slug: "linux/operations/systemd-services", title: "Operating systemd Services", technology: "Linux", command: "systemctl status ssh\nsystemctl restart ssh\nsystemctl enable --now chrony\njournalctl -u ssh -n 50", verify: "systemctl is-active ssh\nsystemctl is-enabled ssh" },
   { slug: "linux/operations/nftables-basics", title: "nftables Basics", technology: "Linux", command: "sudo nft list ruleset\nsudo nft add rule inet filter input tcp dport 22 accept\nsudo nft list chain inet filter input", verify: "sudo nft --check -f /etc/nftables.conf" },
-
-  { slug: "cisco/ccna/ethernet-framing", title: "Ethernet Framing", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "show interfaces counters errors\nshow mac address-table dynamic\nshow interfaces status", verify: "show interfaces gigabitEthernet0/1\nshow mac address-table interface gigabitEthernet0/1" },
-  { slug: "cisco/ccna/vlan-trunks", title: "VLANs and 802.1Q Trunks", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "vlan 20\n name USERS\ninterface gi0/1\n switchport mode trunk\n switchport trunk allowed vlan 10,20", verify: "show vlan brief\nshow interfaces trunk" },
-  { slug: "cisco/ccna/spanning-tree", title: "Spanning Tree Operations", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "spanning-tree mode rapid-pvst\nspanning-tree vlan 10 root primary\ninterface range gi0/10-20\n spanning-tree portfast", verify: "show spanning-tree vlan 10\nshow spanning-tree inconsistentports" },
-  { slug: "cisco/ccna/static-routing", title: "Static Routing", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "ip route 10.20.0.0 255.255.0.0 10.0.12.2\nip route 0.0.0.0 0.0.0.0 10.0.12.2 200", verify: "show ip route static\nshow ip route 10.20.0.0\nping 10.20.0.1 source 10.1.1.1" },
-  { slug: "cisco/ccna/ospf-fundamentals", title: "OSPF Fundamentals", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "router ospf 10\n router-id 1.1.1.1\n network 10.0.12.0 0.0.0.3 area 0\n network 10.1.1.0 0.0.0.255 area 0\n passive-interface gigabitEthernet0/0", verify: "show ip ospf interface brief\nshow ip ospf neighbor\nshow ip ospf database\nshow ip route ospf", summary: "Understand how OSPF discovers neighbors, synchronizes link-state data, and installs the best routes on Cisco IOS." },
-  { slug: "cisco/ccna/standard-acls", title: "Standard Access Lists", technology: "Cisco IOS", certification: "CCNA", variant: "cisco", command: "ip access-list standard MGMT-SOURCES\n permit 10.10.50.0 0.0.0.255\n deny any log\nline vty 0 4\n access-class MGMT-SOURCES in", verify: "show access-lists MGMT-SOURCES\nshow run | section line vty" },
 
   { slug: "cisco/ccnp/multi-area-ospf", title: "Multi-Area OSPF Design", technology: "Cisco IOS", certification: "CCNP", level: "PROFESSIONAL", variant: "cisco", command: "router ospf 10\n area 10 stub\n area 10 range 10.10.0.0 255.255.0.0\n network 10.0.0.0 0.255.255.255 area 0", verify: "show ip ospf border-routers\nshow ip ospf database summary\nshow ip route ospf" },
   { slug: "cisco/ccnp/bgp-path-selection", title: "BGP Path Selection", technology: "Cisco IOS", certification: "CCNP", level: "PROFESSIONAL", variant: "cisco", command: "router bgp 65001\n neighbor 203.0.113.2 remote-as 65002\n neighbor 203.0.113.2 route-map ISP-IN in\nroute-map ISP-IN permit 10\n set local-preference 200", verify: "show ip bgp summary\nshow ip bgp 198.51.100.0\nshow route-map ISP-IN" },
@@ -150,7 +144,7 @@ function makeLesson(seed: Seed): Lesson {
   });
 }
 
-const baseLessons = seeds.map(makeLesson);
+const baseLessons = [...seeds.map(makeLesson), ...ccnaLessonsAsGeneric];
 
 export const lessons = defineLessons(baseLessons.map((lesson, index) => ({
   ...lesson,

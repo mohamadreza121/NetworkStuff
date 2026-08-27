@@ -27,5 +27,5 @@ export const glossaryTerms = defineGlossaryTerms(entries.map(([term, expanded, d
   definition,
   whyItMatters,
   relatedTerms: [...relatedTerms],
-  relatedLesson: term === "OSPF" ? { label: "OSPF Fundamentals", href: "/learn/cisco/ccna/ospf-fundamentals", meta: "CISCO · CCNA" } : undefined,
+  relatedLesson: term === "OSPF" ? { label: "OSPF Neighbors and Router IDs", href: "/learn/cisco/ccna/routing/ospf-neighbors-and-router-id", meta: "CISCO · CCNA v1.1" } : undefined,
 })));

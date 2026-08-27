@@ -13,7 +13,7 @@ export const interviewQuestions = defineInterviewQuestions([
     hint: "Walk the path from local parsing through DNS, transport, TLS, HTTP, and rendering.",
     answer: "The browser parses the URL, resolves the hostname, selects a route and next hop, resolves the gateway MAC when needed, establishes transport—usually TCP plus TLS or QUIC—sends an HTTP request, receives the response, and renders dependent resources.",
     reasoning: "Interviewers want a layered explanation and the ability to name where evidence could be collected at each boundary.",
-    relatedLesson: { label: "Ethernet Framing", href: "/learn/cisco/ccna/ethernet-framing", meta: "CCNA" },
+    relatedLesson: { label: "Ethernet Frames", href: "/learn/cisco/ccna/ethernet-switching/ethernet-frames", meta: "CCNA v1.1" },
   },
   {
     id: "tcp-udp", question: "What is the practical difference between TCP and UDP?", level: "FOUNDATION", role: "NOC Technician", category: "CCNA", technology: "Transport",
@@ -39,7 +39,7 @@ export const interviewQuestions = defineInterviewQuestions([
     hint: "Use the observed neighbor state to choose the next comparison.",
     answer: "Prove link and IP reachability, then compare area, timers, authentication, network type, passive state, router IDs, and MTU. Use the stuck state—INIT, 2-WAY, EXSTART, or EXCHANGE—to prioritize the likely mismatch.",
     reasoning: "A professional workflow uses state-specific evidence and changes only the parameter proven wrong.",
-    relatedLesson: { label: "OSPF Fundamentals", href: "/learn/cisco/ccna/ospf-fundamentals", meta: "CCNA" }, relatedLab: { label: "OSPF Multi-Area", href: "/labs/ospf-multi-area", meta: "GNS3" },
+    relatedLesson: { label: "OSPF Neighbors and Router IDs", href: "/learn/cisco/ccna/routing/ospf-neighbors-and-router-id", meta: "CCNA v1.1" }, relatedLab: { label: "OSPF Multi-Area", href: "/labs/ospf-multi-area", meta: "GNS3" },
   },
   {
     id: "bgp-selection", question: "At a high level, how does BGP select a best path?", level: "PROFESSIONAL", role: "Network Engineer", category: "BGP", technology: "BGP",

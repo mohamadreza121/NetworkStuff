@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 
+import { ccnaModulePath } from "@/content/cisco/ccna";
+import { ccnaModules } from "@/content/cisco/ccna/modules";
 import { lessons } from "@/lib/lessons";
 import { hubs } from "@/content/hubs";
 import { labs } from "@/content/labs";
@@ -9,7 +11,7 @@ import { troubleshootingScenarios } from "@/content/troubleshooting";
 import { siteUrl } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = [
+  const routes = [...new Set([
     "", "/roadmap", "/learn", "/labs", "/reference", "/automation", "/firewalls",
     "/firewalls/palo-alto", "/firewalls/fortigate", "/gns3", "/gns3/install/windows",
     "/gns3/install/linux", "/gns3/install/macos", "/packet-tracer", "/projects",
@@ -19,12 +21,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/tools/eigrp-calculator", "/tools/acl-builder",
     "/glossary", "/about",
     ...hubs.map((hub) => `/learn/${hub.slug.join("/")}`),
+    ...ccnaModules.map((moduleEntry) => ccnaModulePath(moduleEntry.id)),
     ...lessons.map((lesson) => `/learn/${lesson.slug.join("/")}`),
     ...labs.map((lab) => `/labs/${lab.slug}`),
     ...projects.map(projectHref),
     ...referencePlatforms.map((definition) => `/reference/${definition.slug}`),
     ...troubleshootingScenarios.map((scenario) => `/troubleshooting/${scenario.slug}`),
-  ];
+  ])];
   return routes.map((route) => ({
     url: `${siteUrl}${route}`,
     lastModified: new Date(),

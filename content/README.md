@@ -22,6 +22,27 @@ automatically. See `docs/REFERENCE.md` for the row format and safety rules.
 Every generated lesson is validated by `content/schema.ts`. The catch-all
 `app/learn/[...slug]/page.tsx` route creates the page automatically.
 
+## Maintain the CCNA 200-301 path
+
+The CCNA system is intentionally separate from the small generic lesson seed:
+
+- `content/cisco/ccna/objectives.ts` is the versioned v1.1 objective catalog.
+- `content/cisco/ccna/modules.ts` defines the 12 ordered modules and book chapter map.
+- `content/cisco/ccna/lessons-*.ts` contains original focused lesson records.
+- `content/cisco/ccna/index.ts` builds routes, navigation data, statistics, legacy
+  redirects, and the objective-to-lesson coverage matrix.
+- `content/cisco/ccna/types.ts` requires exam version and objective identifiers on
+  every lesson.
+
+Add or revise a CCNA lesson through `makeCcnaLesson()`, then run
+`npm run audit:ccna`. The audit must report zero missing objective IDs. Keep a
+future blueprint in a separate versioned catalog rather than silently mixing it
+into `200-301 v1.1`.
+
+The official Cisco exam-topics document controls scope. The attached Official
+Cert Guide volumes are topic-depth references only. Do not copy their prose,
+figures, tables, questions, or labs into NetPath.
+
 ## Add a technology hub
 
 Add a record to `content/hubs.ts`. Hub slugs share the same catch-all route, and
