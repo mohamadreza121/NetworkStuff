@@ -38,8 +38,8 @@ const learningRoutes = [
     icon: Terminal,
     title: "Operate from Linux",
     description: "Learn the host-side commands used for reachability, DNS, services, logs, and packet capture.",
-    meta: "16-module system",
-    href: "/learn/linux/networking/ip-command",
+    meta: "12-module operations path",
+    href: "/learn/linux/interfaces-addressing/packet-path-netlink-and-managers",
     tone: "green",
   },
   {

@@ -1,5 +1,6 @@
 import { defineLessons, lessonSchema, type Lesson, type TerminalVariant } from "@/content/schema";
 import { ccnaLessonsAsGeneric } from "@/content/cisco/ccna";
+import { linuxLessonsAsGeneric } from "@/content/linux/network-engineering";
 
 type Seed = {
   slug: string;
@@ -14,16 +15,6 @@ type Seed = {
 };
 
 const seeds: Seed[] = [
-  { slug: "linux/foundations/shell-navigation", title: "Shell Navigation", technology: "Linux", command: "pwd\nls -lah\ncd /etc\nfind . -maxdepth 2 -type f | head", verify: "pwd\nstat /etc/hosts" },
-  { slug: "linux/foundations/file-permissions", title: "Linux File Permissions", technology: "Linux", command: "ls -l inventory.yml\nchmod 640 inventory.yml\nchown netops:netops inventory.yml", verify: "stat -c '%U %G %a %n' inventory.yml" },
-  { slug: "linux/foundations/process-inspection", title: "Process Inspection", technology: "Linux", command: "ps aux --sort=-%cpu | head\npgrep -a sshd\ntop -b -n 1 | head", verify: "systemctl status ssh --no-pager\nss -ltnp | grep :22" },
-  { slug: "linux/networking/ip-command", title: "The Linux ip Command", technology: "Linux", command: "ip -br link\nip -br address\nip neighbor show\nip route show\nip route get 8.8.8.8", verify: "ip -br address show dev ens33\nip route get 1.1.1.1", summary: "Inspect interfaces, addressing, neighbors, and kernel route decisions with the primary Linux networking command." },
-  { slug: "linux/networking/routing-table", title: "Reading the Linux Routing Table", technology: "Linux", command: "ip route show table main\nip -6 route show\nip rule show\nip route get 203.0.113.10", verify: "ip route show default\ntracepath 1.1.1.1" },
-  { slug: "linux/networking/dns-troubleshooting", title: "DNS Troubleshooting", technology: "Linux", command: "resolvectl status\ndig +short netpath.dev\ndig @1.1.1.1 netpath.dev\ngetent hosts netpath.dev", verify: "resolvectl query netpath.dev\ndig +trace netpath.dev" },
-  { slug: "linux/networking/tcpdump-basics", title: "tcpdump Basics", technology: "Linux", command: "sudo tcpdump -ni any icmp\nsudo tcpdump -ni ens33 port 53\nsudo tcpdump -ni ens33 -w triage.pcap", verify: "tcpdump -nnr triage.pcap | head" },
-  { slug: "linux/operations/systemd-services", title: "Operating systemd Services", technology: "Linux", command: "systemctl status ssh\nsystemctl restart ssh\nsystemctl enable --now chrony\njournalctl -u ssh -n 50", verify: "systemctl is-active ssh\nsystemctl is-enabled ssh" },
-  { slug: "linux/operations/nftables-basics", title: "nftables Basics", technology: "Linux", command: "sudo nft list ruleset\nsudo nft add rule inet filter input tcp dport 22 accept\nsudo nft list chain inet filter input", verify: "sudo nft --check -f /etc/nftables.conf" },
-
   { slug: "cisco/ccnp/multi-area-ospf", title: "Multi-Area OSPF Design", technology: "Cisco IOS", certification: "CCNP", level: "PROFESSIONAL", variant: "cisco", command: "router ospf 10\n area 10 stub\n area 10 range 10.10.0.0 255.255.0.0\n network 10.0.0.0 0.255.255.255 area 0", verify: "show ip ospf border-routers\nshow ip ospf database summary\nshow ip route ospf" },
   { slug: "cisco/ccnp/bgp-path-selection", title: "BGP Path Selection", technology: "Cisco IOS", certification: "CCNP", level: "PROFESSIONAL", variant: "cisco", command: "router bgp 65001\n neighbor 203.0.113.2 remote-as 65002\n neighbor 203.0.113.2 route-map ISP-IN in\nroute-map ISP-IN permit 10\n set local-preference 200", verify: "show ip bgp summary\nshow ip bgp 198.51.100.0\nshow route-map ISP-IN" },
   { slug: "cisco/ccnp/route-redistribution", title: "Safe Route Redistribution", technology: "Cisco IOS", certification: "CCNP", level: "PROFESSIONAL", variant: "cisco", command: "route-map OSPF-TO-BGP permit 10\n match tag 110\nrouter bgp 65001\n redistribute ospf 10 route-map OSPF-TO-BGP", verify: "show ip protocols\nshow ip bgp\nshow route-map OSPF-TO-BGP" },
@@ -144,7 +135,7 @@ function makeLesson(seed: Seed): Lesson {
   });
 }
 
-const baseLessons = [...seeds.map(makeLesson), ...ccnaLessonsAsGeneric];
+const baseLessons = [...linuxLessonsAsGeneric, ...seeds.map(makeLesson), ...ccnaLessonsAsGeneric];
 
 export const lessons = defineLessons(baseLessons.map((lesson, index) => ({
   ...lesson,

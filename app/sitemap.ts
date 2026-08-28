@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { ccnaModulePath } from "@/content/cisco/ccna";
 import { ccnaModules } from "@/content/cisco/ccna/modules";
+import { linuxModulePath, linuxModules } from "@/content/linux/network-engineering";
 import { lessons } from "@/lib/lessons";
 import { hubs } from "@/content/hubs";
 import { labs } from "@/content/labs";
@@ -22,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/glossary", "/about",
     ...hubs.map((hub) => `/learn/${hub.slug.join("/")}`),
     ...ccnaModules.map((moduleEntry) => ccnaModulePath(moduleEntry.id)),
+    ...linuxModules.map((moduleEntry) => linuxModulePath(moduleEntry.id)),
     ...lessons.map((lesson) => `/learn/${lesson.slug.join("/")}`),
     ...labs.map((lab) => `/labs/${lab.slug}`),
     ...projects.map(projectHref),

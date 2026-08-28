@@ -202,9 +202,9 @@ export const technologies: Technology[] = [
   {
     name: "Linux",
     code: "SH",
-    description: "The operating system skills network engineers actually use.",
+    description: "Host networking, routing, services, security, VPNs, automation, and incident operations.",
     level: "FOUNDATION",
-    modules: 16,
+    modules: 12,
     status: "CORE",
     tone: "green",
     href: "/learn/linux",
@@ -329,7 +329,7 @@ export const searchItems: SearchItem[] = [
     title: "Linux ip command",
     description: "Inspect interfaces, addresses, links, and routes.",
     category: "Lessons",
-    href: "/learn/linux/networking/ip-command",
+    href: "/learn/linux/interfaces-addressing/packet-path-netlink-and-managers",
     keywords: "linux ip addr route link network command reference",
   },
   {

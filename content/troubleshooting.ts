@@ -116,7 +116,7 @@ export const troubleshootingScenarios = defineTroubleshootingScenarios(seeds.map
   verification: ["Repeat the original failing test.", "Confirm the repaired control or forwarding state.", "Check a related path to rule out collateral impact."],
   rootCause: seed.rootCause,
   remember: "Move from the closest known-good layer toward the failure. A command is useful only when it can confirm or eliminate a hypothesis.",
-  relatedLessons: [{ label: "The Linux ip command", href: "/learn/linux/networking/ip-command", meta: "LINUX · FOUNDATION" }],
+  relatedLessons: [{ label: "Packet Path, Netlink, and Network Managers", href: "/learn/linux/interfaces-addressing/packet-path-netlink-and-managers", meta: "LINUX · JUNIOR" }],
 })));
 
 export function getTroubleshootingScenario(slug: string) {

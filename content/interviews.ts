@@ -6,7 +6,7 @@ export const interviewQuestions = defineInterviewQuestions([
     hint: "Separate IP reachability from name resolution.",
     answer: "Start with the client's resolver configuration and test a DNS query directly. IP forwarding already works, so confirm which resolver is configured, whether UDP/TCP 53 reaches it, and whether it returns a valid answer.",
     reasoning: "The successful public-IP ping eliminates many physical, VLAN, gateway, routing, and NAT failures. It does not prove DNS. A strong answer narrows the failure domain before changing anything.",
-    relatedLesson: { label: "DNS Troubleshooting", href: "/learn/linux/networking/dns-troubleshooting", meta: "LINUX" }, relatedLab: { label: "Linux Reachability Triage", href: "/labs/linux-network-troubleshooting", meta: "LINUX" },
+    relatedLesson: { label: "DNS Troubleshooting with dig and resolvectl", href: "/learn/linux/network-services/dns-with-dig-and-resolvectl", meta: "LINUX" }, relatedLab: { label: "Linux Reachability Triage", href: "/labs/linux-network-troubleshooting", meta: "LINUX" },
   },
   {
     id: "url-flow", question: "What happens when you type a URL into a browser?", level: "JUNIOR", role: "Junior Network Engineer", category: "Junior Network Engineer", technology: "TCP/IP",
@@ -58,7 +58,7 @@ export const interviewQuestions = defineInterviewQuestions([
     hint: "Ask the kernel for the resolved route rather than reading the table by eye.",
     answer: "Use `ip route get <destination>` and inspect the selected next hop, interface, preferred source, and policy-routing context. Then validate neighbor state and packet flow on that interface.",
     reasoning: "The resolved lookup accounts for longest-prefix match and policy inputs more reliably than visual inspection alone.",
-    relatedLesson: { label: "The Linux ip command", href: "/learn/linux/networking/ip-command", meta: "LINUX" },
+    relatedLesson: { label: "Packet Path, Netlink, and Network Managers", href: "/learn/linux/interfaces-addressing/packet-path-netlink-and-managers", meta: "LINUX" },
   },
   {
     id: "stateful-firewall", question: "What is the difference between stateful and stateless firewalling?", level: "JUNIOR", role: "Firewall Engineer", category: "Firewalls", technology: "Firewall",

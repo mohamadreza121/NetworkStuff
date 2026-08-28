@@ -110,9 +110,9 @@ export default function LearnPage() {
               <span><small>CISCO / CCNA</small><strong>OSPF Fundamentals</strong><em>45 min · Junior</em></span>
               <ArrowRight aria-hidden="true" />
             </Link>
-            <Link href="/learn/linux/networking/ip-command" data-tone="green">
+            <Link href="/learn/linux/interfaces-addressing/packet-path-netlink-and-managers" data-tone="green">
               <span className="sample-icon"><Terminal aria-hidden="true" /></span>
-              <span><small>LINUX / NETWORKING</small><strong>The Linux ip Command</strong><em>25 min · Foundation</em></span>
+              <span><small>LINUX / INTERFACES + IP</small><strong>Packet Path, Netlink, and Network Managers</strong><em>25 min · Junior</em></span>
               <ArrowRight aria-hidden="true" />
             </Link>
             <p><CheckCircle2 aria-hidden="true" /> Both pages use the responsive documentation shell, copyable terminals, and structured lesson data.</p>

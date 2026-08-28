@@ -31,7 +31,7 @@ const common = {
   },
   relatedLessons: [
     { label: "OSPF Neighbors and Router IDs", href: "/learn/cisco/ccna/routing/ospf-neighbors-and-router-id", meta: "CISCO · CCNA v1.1" },
-    { label: "The Linux ip command", href: "/learn/linux/networking/ip-command", meta: "LINUX · FOUNDATION" },
+    { label: "Packet Path, Netlink, and Network Managers", href: "/learn/linux/interfaces-addressing/packet-path-netlink-and-managers", meta: "LINUX · JUNIOR" },
   ],
   relatedLabs: [
     { label: "OSPF Multi-Area Enterprise", href: "/labs/ospf-multi-area", meta: "GNS3 · PROFESSIONAL" },

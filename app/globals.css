@@ -2717,3 +2717,35 @@ body {
   .ccna-lesson-header h1 { font-size: 2.55rem; }
   .ccna-objective-tags span { max-width: 100%; }
 }
+
+/* Linux network-operations learning path */
+.linux-learning-hub .ccna-hub-hero { background: radial-gradient(circle at 76% 18%, rgba(70,211,139,.12), transparent 27rem), linear-gradient(180deg,#090c0b,#070809); }
+.linux-learning-hub .ccna-hub-kicker,
+.linux-learning-hub .ccna-module-number,
+.linux-learning-hub .ccna-module-copy small,
+.linux-learning-hub .ccna-resource-links svg,
+.linux-module-page .ccna-lesson-row-copy small,
+.linux-module-page .ccna-lesson-rows > a > svg,
+.linux-lesson-article .ccna-lesson-header .lesson-eyebrow,
+.linux-lesson-article .ccna-reference-list > a > span,
+.linux-lesson-article .ccna-reference-list svg,
+.linux-curriculum .ccna-curriculum-heading > span,
+.linux-curriculum .ccna-curriculum-module .module-overview-link svg { color: #61d99a; }
+.linux-learning-hub .ccna-hub-actions a:first-child { border-color: rgba(70,211,139,.45); background: rgba(70,211,139,.08); color: #b8efd1; }
+.linux-learning-hub .ccna-module-rows > a:hover,
+.linux-module-page .ccna-lesson-rows > a:hover { background: rgba(70,211,139,.025); }
+.linux-curriculum .ccna-curriculum-module > a:hover,
+.linux-curriculum .ccna-curriculum-module > a.is-active { border-left-color: #61d99a; color: #b8dfca; background: rgba(70,211,139,.035); }
+.linux-domain-cards { display: grid; grid-template-columns: repeat(2,1fr); border-top: 1px solid #24292e; border-left: 1px solid #24292e; }
+.linux-domain-cards article { min-height: 154px; padding: 1rem; border-right: 1px solid #24292e; border-bottom: 1px solid #24292e; }
+.linux-domain-cards span { color: #61d99a; font-family: var(--font-technical); font-size: .43rem; letter-spacing: .08em; }
+.linux-domain-cards strong { display: block; margin: 1.4rem 0 .55rem; color: #c2c9c6; font-family: var(--font-technical); font-size: .58rem; font-weight: 540; letter-spacing: .04em; }
+.linux-domain-cards p { margin: 0; color: #6f7975; font-size: .61rem; line-height: 1.65; }
+.linux-platform-note { display: flex; align-items: flex-start; gap: .5rem; margin: 1rem 0 0; color: #66716d; font-size: .58rem; line-height: 1.6; }
+.linux-platform-note svg { width: 14px; flex: 0 0 auto; color: #61d99a; }
+.linux-capability-tags span { border-color: rgba(70,211,139,.24); background: rgba(70,211,139,.025); }
+.linux-capability-tags span b { color: #61d99a; }
+
+@media (max-width: 768px) {
+  .linux-domain-cards { grid-template-columns: 1fr; }
+}

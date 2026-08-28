@@ -93,7 +93,7 @@ test("validates the Phase 2 content catalogs", async () => {
   const { labs } = await vite.ssrLoadModule("/content/labs.ts");
   const { linuxCommands } = await vite.ssrLoadModule("/content/commands.ts");
 
-  assert.equal(lessons.length, 101);
+  assert.equal(lessons.length, 163);
   assert.equal(hubs.length, 6);
   assert.equal(labs.length, 6);
   assert.equal(linuxCommands.length, 24);

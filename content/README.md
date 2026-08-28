@@ -43,6 +43,32 @@ The official Cisco exam-topics document controls scope. The attached Official
 Cert Guide volumes are topic-depth references only. Do not copy their prose,
 figures, tables, questions, or labs into NetPath.
 
+## Maintain the Linux network operations path
+
+The Linux path uses a dedicated capability-driven model instead of the generic
+lesson seed:
+
+- `content/linux/network-engineering/modules.ts` defines 12 ordered modules and
+  71 versioned network-operations capabilities.
+- `content/linux/network-engineering/lessons-*.ts` contains the focused,
+  original lesson records.
+- `content/linux/network-engineering/index.ts` builds routes, legacy redirects,
+  statistics, generic adapters, and the capability-to-lesson coverage matrix.
+- `content/linux/network-engineering/types.ts` requires outcomes, mental model,
+  mechanics, terminology, diagram, commands, verification, safety, mistakes,
+  two fault scenarios, field use, practice, questions, references, and links.
+
+Add or revise a lesson through `makeLinuxLesson()`, then run
+`npm run audit:linux`. The audit must report all 71 capabilities covered and
+zero missing capability IDs. Keep distribution-specific runtime details
+explicit and preserve Ubuntu Server as the working baseline without presenting
+one network manager or service name as universal Linux behavior.
+
+Use primary manuals and official project documentation to anchor behavior.
+NetPath explanations, diagrams, command narratives, questions, faults, and labs
+must remain original. Never include real credentials, private keys, production
+addresses, or destructive examples without a clear safety boundary and rollback.
+
 ## Add a technology hub
 
 Add a record to `content/hubs.ts`. Hub slugs share the same catch-all route, and
